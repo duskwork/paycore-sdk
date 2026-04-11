@@ -1,0 +1,55 @@
+{
+    "name": "@duskwork/paycore-sdk",
+    "version": "0.1.0",
+    "description": "Official TypeScript SDK for paycore — multi-tenant crypto payment gateway",
+    "license": "MIT",
+    "author": "duskwork",
+    "homepage": "https://github.com/duskwork/paycore-sdk",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/duskwork/paycore-sdk.git"
+    },
+    "bugs": {
+        "url": "https://github.com/duskwork/paycore-sdk/issues"
+    },
+    "keywords": [
+        "crypto",
+        "payments",
+        "bitcoin",
+        "ethereum",
+        "ton",
+        "tron",
+        "usdt",
+        "duskwork",
+        "paycore"
+    ],
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "bun run build:esm && bun run build:cjs && bun run build:types",
+        "build:esm": "bun build src/index.ts --outdir dist --target browser --format esm --external 'node:*'",
+        "build:cjs": "bun build src/index.ts --outfile dist/index.cjs --target node --format cjs",
+        "build:types": "bunx tsc --emitDeclarationOnly --declaration --outDir dist",
+        "test": "bun test",
+        "lint": "echo 'TODO: eslint'",
+        "prepublishOnly": "bun run build"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "typescript": "^5.9.3"
+    }
+}
