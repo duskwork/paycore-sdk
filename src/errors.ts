@@ -1,7 +1,3 @@
-/* ============================================================================
-   Error types — paycore-sdk
-   ============================================================================ */
-
 export class PayCoreError extends Error {
     public readonly status: number;
     public readonly code: string;

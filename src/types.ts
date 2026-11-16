@@ -1,7 +1,3 @@
-/* ============================================================================
-   Public types — paycore-sdk
-   ============================================================================ */
-
 export type Currency =
     | "BTC"
     | "ETH"
@@ -70,9 +66,8 @@ export interface WebhookEvent {
 export interface PayCoreOptions {
     apiKey: string;
     baseUrl: string;
-    /* Optional override for the public checkout origin used by getCheckoutUrl().
-       Defaults to baseUrl. */
+    /** Origin of the hosted checkout used by getCheckoutUrl(). Defaults to `baseUrl`. */
     checkoutOrigin?: string;
-    /* Optional fetch implementation — useful in environments without global fetch. */
+    /** Custom fetch implementation, for runtimes without a global fetch. */
     fetch?: typeof globalThis.fetch;
 }

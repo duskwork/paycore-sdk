@@ -1,12 +1,3 @@
-/* ============================================================================
-   PayCore client — public API surface
-   ============================================================================
-   STAGE 1 SCAFFOLD: only the constructor and getCheckoutUrl helper are wired.
-   The full request methods (invoices, methods, rates, webhooks, SSE events)
-   land in Stage 4. This file exists so consumers can already type-check
-   imports against the eventual shape.
-   ============================================================================ */
-
 import type {
     PayCoreOptions,
     Invoice,
@@ -17,6 +8,13 @@ import type {
 } from "./types.js";
 import { PayCoreError } from "./errors.js";
 
+/**
+ * paycore API client.
+ *
+ * Stage 1 scaffold: only the constructor and getCheckoutUrl() are implemented. The request
+ * methods (invoices, methods, rates, webhooks, SSE events) land in Stage 4; they are declared
+ * now so code can already type-check against the final shape.
+ */
 export class PayCore {
     private readonly apiKey: string;
     private readonly baseUrl: string;
@@ -32,13 +30,15 @@ export class PayCore {
         this.fetchImpl = options.fetch ?? globalThis.fetch;
     }
 
-    /* Build the public checkout URL for an invoice id. The frontend Next.js
-       checkout app exposes /checkout/[id]. */
+    /**
+     * Public checkout URL for an invoice: `${checkoutOrigin}/checkout/<invoiceId>`, with the id
+     * URL-encoded. The hosted Next.js checkout app serves /checkout/[id].
+     */
     getCheckoutUrl(invoiceId: string): string {
         return `${this.checkoutOrigin}/checkout/${encodeURIComponent(invoiceId)}`;
     }
 
-    /* === The following methods are placeholders — implemented in Stage 4 === */
+    /* Stage 4 placeholders: each member below throws PayCoreError (code "not_implemented"). */
 
     invoices = {
         create: async (_params: CreateInvoiceParams): Promise<Invoice> => {
